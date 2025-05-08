@@ -1,8 +1,9 @@
 source "https://rubygems.org"
 
 gem "dotenv-rails", groups: [ :development, :test ]
-gem "aws-sdk-s3", require: false
 
+gem "aws-sdk-s3", require: false
+gem "devise-jwt"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"
 # Use postgresql as the database for Active Record
@@ -48,3 +49,5 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
+
+gem "devise", "~> 4.9"
