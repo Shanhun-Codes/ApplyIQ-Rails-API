@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
 resources :users, only: [ :show, :update ]
 
+delete "/users/logout", to: "users/sessions#destroy"
 
 get "users", to: "users#index"
 
