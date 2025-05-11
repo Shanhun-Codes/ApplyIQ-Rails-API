@@ -81,9 +81,8 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: applyiq_production
-    username: applyiq
-    password: <%= ENV["APPLYIQ_DATABASE_PASSWORD"] %>
+    # Use the DATABASE_URL environment variable provided by Render
+    database: <%= ENV['DATABASE_URL'] %>  # This will be set in Render environment variables
   cache:
     <<: *primary_production
     database: applyiq_production_cache
@@ -96,3 +95,4 @@ production:
     <<: *primary_production
     database: applyiq_production_cable
     migrations_paths: db/cable_migrate
+
