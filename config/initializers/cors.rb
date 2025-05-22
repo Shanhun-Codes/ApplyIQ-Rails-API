@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "https://applyiq.netlify.app" || "http://localhost:4200"
+    origins  [ "http://localhost:4200", "https://applyiq-rails-api.onrender.com" ]
     resource "*",
       headers: :any,
       expose: [ "Authorization" ],
