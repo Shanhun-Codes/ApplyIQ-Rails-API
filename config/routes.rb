@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :job_applications
+  resources :job_applications do
+    resource :resume, only: [ :create, :update, :show, :destroy ]
+  end
   devise_for :users,
     defaults: { format: :json },
     controllers: {

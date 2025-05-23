@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../../app/lib/custom_failure_app"
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -310,9 +312,15 @@ Devise.setup do |config|
 # When set to false, does not sign a user in automatically after their password is
 # changed. Defaults to true, so a user is signed in automatically after changing a password.
 # config.sign_in_after_change_password = true
+config.warden do |manager|
+  manager.failure_app = CustomFailureApp
+end
+
+
 
 config.jwt do |jwt|
   jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
+  jwt.expiration_time = 1.day.to_i
   jwt.revocation_requests = [
   [ "DELETE", %r{^/users/sign_out$} ]
 ]

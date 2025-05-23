@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_23_025435) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_23_045353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -58,6 +58,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_025435) do
     t.bigint "job_application_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file_url"
+    t.string "tone"
+    t.text "summary"
     t.index ["job_application_id"], name: "index_cover_letters_on_job_application_id"
   end
 
@@ -85,6 +88,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_025435) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tags"
     t.index ["user_id"], name: "index_job_applications_on_user_id"
   end
 
@@ -101,6 +105,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_025435) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profession"
+    t.string "file_url"
+    t.bigint "job_application_id"
+    t.index ["job_application_id"], name: "index_resumes_on_job_application_id"
     t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
@@ -122,5 +130,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_23_025435) do
   add_foreign_key "cover_letters", "job_applications"
   add_foreign_key "email_trackings", "job_applications"
   add_foreign_key "job_applications", "users"
+  add_foreign_key "resumes", "job_applications"
   add_foreign_key "resumes", "users"
 end
